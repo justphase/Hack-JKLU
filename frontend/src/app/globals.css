@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --color-bg-primary: #030712;
+    --color-bg-secondary: #0a0f1a;
+    --color-bg-card: #111827;
+    --color-border: #1f2937;
+    --color-accent: #22c55e;
+    --color-accent-light: #4ade80;
+    --color-text-primary: #f9fafb;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #64748b;
+    --color-success: #4ade80;
+  }
+
+  body {
+    background: #030712;
+    color: #f9fafb;
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(34, 197, 94, 0.25);
+    color: #f9fafb;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #111827;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 3px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  input, textarea, select {
+    font-family: inherit;
+  }
+}
+
+/* Green gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #4ade80, #22c55e, #16a34a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button glow hover effect */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #22c55e, #16a34a, #4ade80, #22c55e);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-glow:hover::before {
+  opacity: 1;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.3), 0 0 60px rgba(34, 197, 94, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Card border animation */
+.card-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.card-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--angle, 0deg), transparent 60%, #22c55e 80%, #4ade80 90%, transparent 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.card-hover:hover::before {
+  opacity: 1;
+  animation: rotate-border 3s linear infinite;
+}
+.card-hover:hover {
+  border-color: transparent !important;
+}
+
+@keyframes rotate-border {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Clerk dark theme overrides */
+.cl-card {
+  background: #111827 !important;
+  border-color: #1f2937 !important;
+}
+.cl-headerTitle, .cl-headerSubtitle {
+  color: #f9fafb !important;
+}
+
+/* Hide Clerk branding badge everywhere */
+.cl-badge,
+.cl-logoBox,
+.cl-logoImage,
+.cl-internal-b3fm6y,
+.cl-internal-16vtwdp,
+[data-localization-key="badge"],
+.cl-footerPages,
+.cl-footer [class*="Powered"],
+.cl-userButtonPopoverCard__branding,
+.cl-badge__branded {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  pointer-events: none !important;
+}

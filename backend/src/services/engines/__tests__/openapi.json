@@ -1,0 +1,72 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Vulnerable API",
+    "version": "1.0.0",
+    "description": "Intentionally insecure API spec for testing the API Security Engine"
+  },
+  "servers": [
+    { "url": "http://api.example.com/v1" },
+    { "url": "http://staging.example.com/v1" }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "List all users",
+        "parameters": [
+          { "name": "token", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "summary": "Create a user",
+        "responses": { "201": { "description": "Created" } }
+      }
+    },
+    "/users/{id}": {
+      "put": {
+        "summary": "Update user",
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "summary": "Delete user",
+        "security": [],
+        "responses": { "204": { "description": "Deleted" } }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "User login",
+        "parameters": [
+          { "name": "password", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Login successful" } }
+      }
+    },
+    "/admin/dashboard": {
+      "get": {
+        "summary": "Admin dashboard",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/internal/metrics": {
+      "get": {
+        "summary": "Internal metrics",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/debug/logs": {
+      "get": {
+        "summary": "Debug logs",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "security": [],
+        "responses": { "200": { "description": "OK" } }
+      }
+    }
+  }
+}

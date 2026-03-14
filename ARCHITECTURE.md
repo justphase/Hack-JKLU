@@ -37,7 +37,8 @@ To provide state-of-the-art security analysis, a multi-layered approach was requ
 
 ### 1. SAST (Static Application Security Testing)
 * **What it does:** Scans the raw source code text and Abstract Syntax Trees (AST) looking for known dangerous patterns based on OWASP top 10 rules.
-* **Why we use it:** It catches obvious developer mistakes instantly without executing the code. Examples include manual `eval()` usage, SQL Injection patterns, Cross-Site Scripting (XSS) vectors, and hardcoded debugging endpoints.
+* **Why we use it:** It catches obvious developer mistakes instantly without executing the code. Examples include manual `eval()` usage, SQL Injection patterns, Cross-Site Scripting 
+(XSS) vectors, and hardcoded debugging endpoints.
 
 ### 2. SCA (Software Composition Analysis)
 * **What it does:** Analyzes dependency manifests (`package.json`, etc.) to identify third-party libraries incorporated into the project.

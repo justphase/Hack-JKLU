@@ -42,6 +42,7 @@ interface ScanResponse {
 
 export default function DashboardPage() {
   const { user, isLoaded } = useUser();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002/api";
 
   const [activeTab, setActiveTab] = useState<"upload" | "github">("upload");
   const [dragOver, setDragOver] = useState(false);
@@ -93,7 +94,7 @@ export default function DashboardPage() {
   useEffect(() => {
     if (githubInstallId && activeTab === "github") {
       setLoadingRepos(true);
-      fetch(`http://localhost:3002/api/auth/github/repos?installation_id=${githubInstallId}`)
+      fetch(`${API_URL}/auth/github/repos?installation_id=${githubInstallId}`)
         .then((res) => res.json())
         .then((data) => setGithubRepos(data.repos ?? []))
         .catch(() => setGithubRepos([]))
@@ -102,12 +103,12 @@ export default function DashboardPage() {
   }, [githubInstallId, activeTab]);
 
   const connectGithub = () => {
-    window.location.href = "http://localhost:3002/api/auth/github";
+    window.location.href = `${API_URL}/auth/github`;
   };
 
   const disconnectGithub = async () => {
     if (githubInstallId) {
-      await fetch("http://localhost:3002/api/auth/github/disconnect", {
+      await fetch(`${API_URL}/auth/github/disconnect`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ installation_id: githubInstallId }),
@@ -172,7 +173,7 @@ export default function DashboardPage() {
       selectedFiles.forEach((f) => formData.append("files", f));
       setScanStatus("scanning");
 
-      const res = await fetch("http://localhost:3002/api/scan/upload", {
+      const res = await fetch(`${API_URL}/scan/upload`, {
         method: "POST",
         body: formData,
       });
@@ -197,7 +198,7 @@ export default function DashboardPage() {
     try {
       let githubToken: string | undefined;
       if (githubInstallId) {
-        const tokenRes = await fetch("http://localhost:3002/api/auth/github/token", {
+        const tokenRes = await fetch(`${API_URL}/auth/github/token`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ installation_id: githubInstallId }),
@@ -206,7 +207,7 @@ export default function DashboardPage() {
         githubToken = tokenData.token;
       }
 
-      const res = await fetch("http://localhost:3002/api/scan/github", {
+      const res = await fetch(`${API_URL}/scan/github`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ repositoryUrl: githubUrl, githubToken }),

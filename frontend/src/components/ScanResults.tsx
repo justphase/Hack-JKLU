@@ -208,7 +208,8 @@ export default function ScanResults({ result, onReset }: ScanResultProps) {
   const downloadPDF = async () => {
     setDownloading(true);
     try {
-      const res = await fetch("http://localhost:3002/api/report/pdf", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002/api";
+      const res = await fetch(`${apiUrl}/report/pdf`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(result),

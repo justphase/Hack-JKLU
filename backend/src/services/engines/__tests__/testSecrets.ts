@@ -22,7 +22,8 @@ console.log(`⚠️  Found ${result.vulnerabilities.length} secrets\n`);
 console.log("Severity breakdown:", bySev, "\n");
 
 for (const v of result.vulnerabilities) {
-  const emoji = { critical: "🔴", high: "🟠", medium: "🟡", low: "🟢" }[v.severity] ?? "•";
+  const emojis: Record<string, string> = { critical: "🔴", high: "🟠", medium: "🟡", low: "🟢", info: "⚪" };
+  const emoji = emojis[v.severity] ?? "•";
   console.log(`${emoji} [${v.severity.toUpperCase()}] ${v.title}`);
   console.log(`   📍 Line ${v.lineNumber} → ${v.codeSnippet}`);
 }

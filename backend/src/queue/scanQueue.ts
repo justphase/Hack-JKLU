@@ -9,12 +9,12 @@ export interface ScanJobData {
   sourceType: "upload" | "github";
 }
 
-let scanQueue: Queue<ScanJobData> | null = null;
+let scanQueue: any = null;
 
-export function getScanQueue(): Queue<ScanJobData> {
+export function getScanQueue(): any {
   if (!scanQueue) {
     scanQueue = new Queue<ScanJobData>("scan-jobs", {
-      connection: getRedisConnection(),
+      connection: getRedisConnection() as any,
       defaultJobOptions: {
         removeOnComplete: { count: 100 },
         removeOnFail: { count: 50 },

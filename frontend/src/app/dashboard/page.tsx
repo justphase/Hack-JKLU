@@ -8,6 +8,7 @@ import {
   X, ArrowRight, Lock, GitBranch, Loader, AlertTriangle
 } from "lucide-react";
 import ScanResults from "../../components/ScanResults";
+import ScanProgress from "../../components/ScanProgress";
 import { AnimatedButton } from "../../components/ui/animated-button";
 
 type ScanStatus = "idle" | "uploading" | "scanning" | "cloning" | "done" | "error";
@@ -285,8 +286,12 @@ export default function DashboardPage() {
       </nav>
 
       <div className="max-w-3xl mx-auto px-6 py-12">
-        {/* Header */}
-        <div className="mb-10">
+        {isScanning ? (
+          <ScanProgress />
+        ) : (
+          <>
+            {/* Header */}
+            <div className="mb-10">
           <h1 className="text-4xl font-black mb-3 tracking-tight">Scan your project</h1>
           <p className="text-gray-400 text-lg">
             Upload your files or connect GitHub. Full security report in under 60 seconds.
@@ -516,6 +521,8 @@ export default function DashboardPage() {
               <X size={16} />
             </button>
           </div>
+        )}
+        </>
         )}
       </div>
     </div>

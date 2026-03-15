@@ -146,9 +146,9 @@ export default function HomePage() {
                     size="lg"
                   />
                 </Link>
-                <Link href="#how">
+                <Link href={isSignedIn ? "/dashboard" : "/sign-in"}>
                   <AnimatedButtonOutline
-                    title="See how it works"
+                    title={isSignedIn ? "Dashboard" : "Sign in"}
                     size="lg"
                   />
                 </Link>

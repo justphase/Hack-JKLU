@@ -42,7 +42,8 @@ To provide state-of-the-art security analysis, a multi-layered approach was requ
 
 ### 2. SCA (Software Composition Analysis)
 * **What it does:** Analyzes dependency manifests (`package.json`, etc.) to identify third-party libraries incorporated into the project.
-* **Why we use it:** Over 80% of modern web apps rely on open-source libraries, many of which contain known vulnerabilities. The SCA engine leverages the **NPM Audit API** (or equivalent vulnerability databases) to cross-reference the user's dependencies against registered CVEs (Common Vulnerabilities and Exposures), catching risks in code the primary developers didn't even write.
+* **Why we use it:** Over 80% of modern web apps rely on open-source libraries, many of which contain known vulnerabilities. The SCA engine leverages the 
+**NPM Audit API** (or equivalent vulnerability databases) to cross-reference the user's dependencies against registered CVEs (Common Vulnerabilities and Exposures), catching risks in code the primary developers didn't even write.
 
 ### 3. SEC (Secrets Scanner)
 * **What it does:** Uses advanced regular expressions combined with **Shannon Entropy analysis** to scan all files for accidently committed sensitive data.

@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { Engine, FileInput, ScanResult, Vulnerability } from "./types.js";
 
-const MODEL = "gemini-2.0-flash";
+const MODEL = "gemini-2.5-flash";
 
 // Chunk large files to stay within token limits
 const MAX_CHARS_PER_FILE = 8000;

@@ -216,7 +216,7 @@ export default function HomePage() {
                 step: "02",
                 icon: <Zap size={20} className="text-emerald-400" />,
                 title: "Multi-engine scan",
-                desc: "Five engines run in parallel — SAST, SCA, API audit, secrets detection. Results in under 60 seconds.",
+                desc: "Four engines run in parallel — SAST, SCA, API audit, secrets detection. Results in under 60 seconds.",
               },
               {
                 step: "03",
@@ -242,7 +242,7 @@ export default function HomePage() {
       <section id="engines" className="relative z-10 px-8 py-20 border-t border-gray-800/40">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-green-400 mb-3">Scan engines</p>
-          <h2 className="text-2xl font-bold mb-4">Five engines. One risk score.</h2>
+          <h2 className="text-2xl font-bold mb-4">Four engines. One risk score.</h2>
           <p className="text-gray-500 mb-12 max-w-lg">Every scan runs all engines in parallel, cross-correlates findings, and outputs a single 0–100 risk score.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

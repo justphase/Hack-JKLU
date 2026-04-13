@@ -18,38 +18,35 @@ export const AnimatedButton: React.FC<AnimatedButtonProps> = ({
   ...props
 }) => {
   const sizes = {
-    sm: "px-4 py-2.5 rounded-xl text-sm",
-    md: "px-5 py-3 rounded-xl text-sm",
-    lg: "px-7 py-3.5 rounded-xl text-base",
+    sm: "px-4 py-2 rounded-lg text-[13px]",
+    md: "px-5 py-2.5 rounded-lg text-sm",
+    lg: "px-6 py-3 rounded-lg text-sm",
   };
 
   return (
     <button
       {...props}
-      className={`group relative overflow-hidden border cursor-pointer transition-all duration-500 ease-out 
-                  shadow-lg hover:shadow-green-500/25 hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98]
-                  ${sizes[size]} 
-                  border-green-500/40 bg-gradient-to-br from-green-600/90 via-green-600 to-green-700
-                  disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0 disabled:hover:shadow-lg
+      className={`group relative overflow-hidden cursor-pointer transition-all duration-300 ease-out
+                  hover:scale-[1.02] active:scale-[0.98]
+                  ${sizes[size]}
+                  bg-white text-zinc-900
+                  disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
                   ${className}`}
     >
-      {/* Moving gradient sweep */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-300/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-
-      {/* Overlay glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-green-400/15 via-emerald-300/10 to-green-400/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Subtle shimmer on hover */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
 
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-center gap-2.5">
+      <div className="relative z-10 flex items-center justify-center gap-2">
         {icon && (
-          <span className="transition-transform duration-300 group-hover:scale-110">
+          <span className="transition-transform duration-300 group-hover:translate-x-0.5">
             {icon}
           </span>
         )}
         <div className={subtitle ? "text-left" : ""}>
-          <p className="text-white font-semibold leading-tight">{title}</p>
+          <p className="font-medium leading-tight">{title}</p>
           {subtitle && (
-            <p className="text-white/70 text-xs mt-0.5">{subtitle}</p>
+            <p className="text-zinc-500 text-xs mt-0.5">{subtitle}</p>
           )}
         </div>
       </div>
@@ -57,7 +54,7 @@ export const AnimatedButton: React.FC<AnimatedButtonProps> = ({
   );
 };
 
-/* Secondary variant — outline style with same hover effect */
+/* Secondary variant — ghost / outline style */
 export const AnimatedButtonOutline: React.FC<AnimatedButtonProps> = ({
   icon,
   title,
@@ -67,28 +64,25 @@ export const AnimatedButtonOutline: React.FC<AnimatedButtonProps> = ({
   ...props
 }) => {
   const sizes = {
-    sm: "px-4 py-2.5 rounded-xl text-sm",
-    md: "px-5 py-3 rounded-xl text-sm",
-    lg: "px-7 py-3.5 rounded-xl text-base",
+    sm: "px-4 py-2 rounded-lg text-[13px]",
+    md: "px-5 py-2.5 rounded-lg text-sm",
+    lg: "px-6 py-3 rounded-lg text-sm",
   };
 
   return (
     <button
       {...props}
-      className={`group relative overflow-hidden border cursor-pointer transition-all duration-500 ease-out 
-                  hover:shadow-green-500/15 hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98]
-                  ${sizes[size]} 
-                  border-gray-700 bg-transparent text-gray-400 hover:text-white hover:border-green-500/40
+      className={`group relative overflow-hidden cursor-pointer transition-all duration-300 ease-out
+                  hover:scale-[1.02] active:scale-[0.98]
+                  ${sizes[size]}
+                  border border-zinc-800 bg-transparent text-zinc-400 hover:text-zinc-200 hover:border-zinc-600 hover:bg-white/[0.02]
                   disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
                   ${className}`}
     >
-      {/* Moving gradient sweep */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-center gap-2.5">
+      <div className="relative z-10 flex items-center justify-center gap-2">
         {icon && (
-          <span className="transition-transform duration-300 group-hover:scale-110">
+          <span className="transition-transform duration-300 group-hover:translate-x-0.5">
             {icon}
           </span>
         )}

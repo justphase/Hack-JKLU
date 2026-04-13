@@ -8,40 +8,49 @@
   }
 
   :root {
-    --color-bg-primary: #030712;
-    --color-bg-secondary: #0a0f1a;
-    --color-bg-card: #111827;
-    --color-border: #1f2937;
-    --color-accent: #22c55e;
-    --color-accent-light: #4ade80;
-    --color-text-primary: #f9fafb;
-    --color-text-secondary: #94a3b8;
-    --color-text-muted: #64748b;
-    --color-success: #4ade80;
+    --color-bg-primary: #09090b;
+    --color-bg-secondary: #0c0c0f;
+    --color-bg-card: #111113;
+    --color-bg-elevated: #18181b;
+    --color-border: rgba(255, 255, 255, 0.06);
+    --color-border-hover: rgba(255, 255, 255, 0.12);
+    --color-accent: #a78bfa;
+    --color-accent-light: #c4b5fd;
+    --color-accent-dim: rgba(167, 139, 250, 0.15);
+    --color-text-primary: #fafafa;
+    --color-text-secondary: #a1a1aa;
+    --color-text-muted: #52525b;
+    --color-success: #34d399;
+    --color-warning: #fbbf24;
+    --color-danger: #f87171;
   }
 
   body {
-    background: #030712;
-    color: #f9fafb;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
     font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em;
   }
 
   ::selection {
-    background: rgba(34, 197, 94, 0.25);
-    color: #f9fafb;
+    background: rgba(167, 139, 250, 0.2);
+    color: #fafafa;
   }
 
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #111827;
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #374151;
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.14);
   }
 
   a {
@@ -54,84 +63,146 @@
   }
 }
 
-/* Green gradient text */
+/* ── Gradient Text ── */
 .gradient-text {
-  background: linear-gradient(135deg, #4ade80, #22c55e, #16a34a);
+  background: linear-gradient(135deg, #e4e4e7, #ffffff, #a1a1aa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Button glow hover effect */
-.btn-glow {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-.btn-glow::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, #22c55e, #16a34a, #4ade80, #22c55e);
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.btn-glow:hover::before {
-  opacity: 1;
-}
-.btn-glow:hover {
-  box-shadow: 0 0 30px rgba(34, 197, 94, 0.3), 0 0 60px rgba(34, 197, 94, 0.1);
-  transform: translateY(-1px);
+.gradient-text-accent {
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Card border animation */
+/* ── Subtle grid background ── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Radial glow ── */
+.radial-glow {
+  position: relative;
+}
+.radial-glow::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Card styles ── */
+.card-surface {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-surface:hover {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Card hover (legacy compat) ── */
 .card-hover {
   position: relative;
   overflow: hidden;
-  transition: all 0.4s ease;
-}
-.card-hover::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(from var(--angle, 0deg), transparent 60%, #22c55e 80%, #4ade80 90%, transparent 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.card-hover:hover::before {
-  opacity: 1;
-  animation: rotate-border 3s linear infinite;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-hover:hover {
-  border-color: transparent !important;
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
-@keyframes rotate-border {
+/* ── Shine effect on hover ── */
+.shine-border {
+  position: relative;
+  overflow: hidden;
+}
+.shine-border::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.03) 45%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.03) 55%,
+    transparent 60%
+  );
+  transform: translateX(-100%) translateY(-100%);
+  transition: none;
+  pointer-events: none;
+}
+.shine-border:hover::after {
+  animation: shine-sweep 0.8s ease forwards;
+}
+
+@keyframes shine-sweep {
   to {
-    --angle: 360deg;
+    transform: translateX(50%) translateY(50%);
   }
 }
 
+/* ── Noise texture overlay ── */
+.noise-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.4;
+}
+
+/* ── Animate border for feature cards ── */
 @property --angle {
   syntax: '<angle>';
   initial-value: 0deg;
   inherits: false;
 }
 
+/* ── Pulse dot ── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ── Float animation ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
 /* Clerk dark theme overrides */
 .cl-card {
-  background: #111827 !important;
-  border-color: #1f2937 !important;
+  background: #111113 !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
 }
 .cl-headerTitle, .cl-headerSubtitle {
-  color: #f9fafb !important;
+  color: #fafafa !important;
 }
 
 /* Hide Clerk branding badge everywhere */

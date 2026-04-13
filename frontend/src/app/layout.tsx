@@ -6,10 +6,11 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "The Oracle's Decree — Security Scanner",
+  title: "Oracle's Decree — Security Scanner",
   description:
     "Automated security intelligence platform that unifies SAST, SCA, API Security, and Secrets scanning into a prioritized risk score.",
 };

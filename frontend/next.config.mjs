@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // Proxy /api/* calls to the backend
   // In production (Vercel), set BACKEND_URL env var to your deployed backend URL
   async rewrites() {
@@ -20,4 +19,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
